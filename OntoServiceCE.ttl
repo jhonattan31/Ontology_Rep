@@ -1,0 +1,362 @@
+@prefix : <http://servicos.gov.ce.br/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix serv: <http://servicos.gov.ce.br/> .
+@base <http://servicos.gov.ce.br/> .
+
+<http://servicos.gov.ce.br/> rdf:type owl:Ontology ;
+                              owl:versionIRI <http://servicos.gov.ce.br/> .
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2004/02/skos/core#broader
+<http://www.w3.org/2004/02/skos/core#broader> rdf:type rdfs:Datatype .
+
+
+###  http://www.w3.org/2004/02/skos/core#notation
+<http://www.w3.org/2004/02/skos/core#notation> rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://servicos.gov.ce.br/administra
+serv:administra rdf:type owl:ObjectProperty ;
+                owl:inverseOf serv:administrado ;
+                rdfs:domain serv:Poder ;
+                rdfs:range serv:Orgao .
+
+
+###  http://servicos.gov.ce.br/administrado
+serv:administrado rdf:type owl:ObjectProperty ;
+                  rdfs:domain serv:Orgao ;
+                  rdfs:range serv:Poder .
+
+
+###  http://servicos.gov.ce.br/organiza
+serv:organiza rdf:type owl:ObjectProperty ;
+              owl:inverseOf serv:organizado ;
+              rdfs:domain serv:Orgao ;
+              rdfs:range serv:Secretaria .
+
+
+###  http://servicos.gov.ce.br/organizado
+serv:organizado rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                rdfs:domain serv:Secretaria ;
+                rdfs:range serv:Orgao .
+
+
+###  http://servicos.gov.ce.br/pertence
+serv:pertence rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf owl:topObjectProperty ;
+              owl:inverseOf serv:possui ;
+              rdfs:domain serv:Categoria ;
+              rdfs:range serv:Servico .
+
+
+###  http://servicos.gov.ce.br/possui
+serv:possui rdf:type owl:ObjectProperty ;
+            rdfs:domain serv:Servico ;
+            rdfs:range serv:Categoria .
+
+
+###  http://servicos.gov.ce.br/realiza
+serv:realiza rdf:type owl:ObjectProperty ;
+             owl:inverseOf serv:realizado ;
+             rdfs:domain serv:Secretaria ;
+             rdfs:range serv:Servico .
+
+
+###  http://servicos.gov.ce.br/realizado
+serv:realizado rdf:type owl:ObjectProperty ;
+               rdfs:domain serv:Servico ;
+               rdfs:range serv:Secretaria .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://servicos.gov.ce.br/codServico
+serv:codServico rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf owl:topDataProperty ;
+                rdfs:domain serv:Servico ;
+                rdfs:range xsd:short .
+
+
+###  http://servicos.gov.ce.br/dscAcessoOnline
+serv:dscAcessoOnline rdf:type owl:DatatypeProperty ;
+                     rdfs:domain serv:Servico ;
+                     rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/dscAcessoOnlineAcomp
+serv:dscAcessoOnlineAcomp rdf:type owl:DatatypeProperty ;
+                          rdfs:domain serv:Servico ;
+                          rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/dscAcessoPresencial
+serv:dscAcessoPresencial rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf owl:topDataProperty ;
+                         rdfs:domain serv:Servico ;
+                         rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/dscAcessoPresencialAcomp
+serv:dscAcessoPresencialAcomp rdf:type owl:DatatypeProperty ;
+                              rdfs:domain serv:Servico ;
+                              rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/dscAcessoTelefoneAcomp
+serv:dscAcessoTelefoneAcomp rdf:type owl:DatatypeProperty ;
+                            rdfs:domain serv:Servico ;
+                            rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/dscBancoPalavra
+serv:dscBancoPalavra rdf:type owl:DatatypeProperty ;
+                     rdfs:domain serv:Servico ;
+                     rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/dscDocNecessarios
+serv:dscDocNecessarios rdf:type owl:DatatypeProperty ;
+                       rdfs:domain serv:Servico ;
+                       rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/dscEndereco
+serv:dscEndereco rdf:type owl:DatatypeProperty ;
+                 rdfs:domain serv:Servico ;
+                 rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/dscEnderecoMapa
+serv:dscEnderecoMapa rdf:type owl:DatatypeProperty ;
+                     rdfs:domain serv:Servico ;
+                     rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/dscEtapasAtendimento
+serv:dscEtapasAtendimento rdf:type owl:DatatypeProperty ;
+                          rdfs:domain serv:Servico ;
+                          rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/dscFinalidade
+serv:dscFinalidade rdf:type owl:DatatypeProperty ;
+                   rdfs:domain serv:Servico ;
+                   rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/dscHorarioAtendimento
+serv:dscHorarioAtendimento rdf:type owl:DatatypeProperty ;
+                           rdfs:domain serv:Servico ;
+                           rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/dscLegislacao
+serv:dscLegislacao rdf:type owl:DatatypeProperty ;
+                   rdfs:domain serv:Servico ;
+                   rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/dscOutros
+serv:dscOutros rdf:type owl:DatatypeProperty ;
+               rdfs:domain serv:Servico ;
+               rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/dscPoder
+serv:dscPoder rdf:type owl:DatatypeProperty ;
+              rdfs:domain serv:Poder ;
+              rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/dscPrazoEntrega
+serv:dscPrazoEntrega rdf:type owl:DatatypeProperty ;
+                     rdfs:domain serv:Servico ;
+                     rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/dscRequisitos
+serv:dscRequisitos rdf:type owl:DatatypeProperty ;
+                   rdfs:domain serv:Servico ;
+                   rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/dscServico
+serv:dscServico rdf:type owl:DatatypeProperty ;
+                rdfs:domain serv:Servico ;
+                rdfs:range xsd:string ,
+                           <http://www.w3.org/2004/02/skos/core#notation> .
+
+
+###  http://servicos.gov.ce.br/dscServicoGratuito
+serv:dscServicoGratuito rdf:type owl:DatatypeProperty ;
+                        rdfs:domain serv:Servico ;
+                        rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/dscServicosRelacionados
+serv:dscServicosRelacionados rdf:type owl:DatatypeProperty ;
+                             rdfs:domain serv:Servico ;
+                             rdfs:range xsd:string ,
+                                        <http://www.w3.org/2004/02/skos/core#broader> .
+
+
+###  http://servicos.gov.ce.br/dscSite
+serv:dscSite rdf:type owl:DatatypeProperty ;
+             rdfs:domain serv:Servico ;
+             rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/dscSolicitante
+serv:dscSolicitante rdf:type owl:DatatypeProperty ;
+                    rdfs:domain serv:Servico ;
+                    rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/dscTelefone
+serv:dscTelefone rdf:type owl:DatatypeProperty ;
+                 rdfs:domain serv:Servico ;
+                 rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/dscTempAtendimento
+serv:dscTempAtendimento rdf:type owl:DatatypeProperty ;
+                        rdfs:domain serv:Servico ;
+                        rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/dscTempoAtendimentoPrior
+serv:dscTempoAtendimentoPrior rdf:type owl:DatatypeProperty ;
+                              rdfs:domain serv:Servico ;
+                              rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/flgAcessoOnline
+serv:flgAcessoOnline rdf:type owl:DatatypeProperty ;
+                     rdfs:domain serv:Servico ;
+                     rdfs:range xsd:boolean .
+
+
+###  http://servicos.gov.ce.br/flgAcessoPresencial
+serv:flgAcessoPresencial rdf:type owl:DatatypeProperty ;
+                         rdfs:domain serv:Servico ;
+                         rdfs:range xsd:boolean .
+
+
+###  http://servicos.gov.ce.br/flgAcessoTelefone
+serv:flgAcessoTelefone rdf:type owl:DatatypeProperty ;
+                       rdfs:domain serv:Servico ;
+                       rdfs:range xsd:boolean .
+
+
+###  http://servicos.gov.ce.br/flgAtivo
+serv:flgAtivo rdf:type owl:DatatypeProperty ;
+              rdfs:range xsd:boolean .
+
+
+###  http://servicos.gov.ce.br/flgPublicoAlvo
+serv:flgPublicoAlvo rdf:type owl:DatatypeProperty ;
+                    rdfs:domain serv:Servico ;
+                    rdfs:range xsd:short .
+
+
+###  http://servicos.gov.ce.br/flgServicoDigital
+serv:flgServicoDigital rdf:type owl:DatatypeProperty ;
+                       rdfs:domain serv:Servico ;
+                       rdfs:range xsd:boolean .
+
+
+###  http://servicos.gov.ce.br/flgServicoGratuito
+serv:flgServicoGratuito rdf:type owl:DatatypeProperty ;
+                        rdfs:domain serv:Servico ;
+                        rdfs:range xsd:boolean .
+
+
+###  http://servicos.gov.ce.br/nomAreaResp
+serv:nomAreaResp rdf:type owl:DatatypeProperty ;
+                 rdfs:domain serv:Servico ;
+                 rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/nomCategoria
+serv:nomCategoria rdf:type owl:DatatypeProperty ;
+                  rdfs:domain serv:Categoria ;
+                  rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/nomOrgao
+serv:nomOrgao rdf:type owl:DatatypeProperty ;
+              rdfs:domain serv:Orgao ;
+              rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/nomSecretaria
+serv:nomSecretaria rdf:type owl:DatatypeProperty ;
+                   rdfs:domain serv:Secretaria ;
+                   rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/nomServico
+serv:nomServico rdf:type owl:DatatypeProperty ;
+                rdfs:domain serv:Servico ;
+                rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/nomUnidPrestadora
+serv:nomUnidPrestadora rdf:type owl:DatatypeProperty ;
+                       rdfs:domain serv:Servico ;
+                       rdfs:range xsd:string .
+
+
+###  http://servicos.gov.ce.br/sglOrgao
+serv:sglOrgao rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdfs:domain serv:Orgao ;
+              rdfs:range xsd:short .
+
+
+###  http://servicos.gov.ce.br/sglSecretaria
+serv:sglSecretaria rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf owl:topDataProperty ;
+                   rdfs:domain serv:Secretaria ;
+                   rdfs:range xsd:short .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://servicos.gov.ce.br/Categoria
+serv:Categoria rdf:type owl:Class .
+
+
+###  http://servicos.gov.ce.br/Orgao
+serv:Orgao rdf:type owl:Class .
+
+
+###  http://servicos.gov.ce.br/Poder
+serv:Poder rdf:type owl:Class .
+
+
+###  http://servicos.gov.ce.br/Secretaria
+serv:Secretaria rdf:type owl:Class .
+
+
+###  http://servicos.gov.ce.br/Servico
+serv:Servico rdf:type owl:Class .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
